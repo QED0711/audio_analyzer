@@ -91,7 +91,7 @@ SIGNAL COMPARE CLASS
 """        
         
         
-class SignalCompare():
+class SpectrumCompare():
     
     def __init__(self, original, modified):
         """
@@ -222,11 +222,11 @@ class SignalCompare():
                                     n=10000, 
                                     size=1000,
                                     title="Amplitude Distributions",
-                                    xlabel="Average Amplitude",
+                                    xlabel="Average Amplitude (unscaled)",
                                     ylabel="Density"
                                     ):
-        amp1 = self.dfs[0].scaled_amplitude
-        amp2 = self.dfs[1].scaled_amplitude
+        amp1 = self.dfs[0].average_amplitude
+        amp2 = self.dfs[1].average_amplitude
 
         samples_1 = []
         samples_2 = []
