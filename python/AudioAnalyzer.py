@@ -130,7 +130,7 @@ class SpectrumCompare():
         """
         
         dfs = self.dfs.copy()
-        fig = plt.figure(figsize=(16,4))
+        fig = plt.figure(figsize=(16,8))
         
         if frange:
             for i, df in enumerate(dfs):
@@ -155,10 +155,10 @@ class SpectrumCompare():
         plt.title(title, fontsize=24)
         plt.xlabel(xlabel, fontsize=20)
         plt.ylabel(ylabel, fontsize=20) 
-        plt.legend()
+        plt.legend(fontsize=14)
         
-    def plot_spectrum_comparison(self, 
-                               plot_original=False,
+    def plot_spectrum_heatmap(self, 
+                               plot_spec1=True,
                                frange=[], 
                                title="Audio Comparison", 
                                cmap="plasma",
@@ -171,7 +171,7 @@ class SpectrumCompare():
         """
         
 #       DATAFRAME SETUP
-        if plot_original:
+        if plot_spec1:
             df = self.original_df
         else:
             df = self.modified_df            
@@ -225,8 +225,8 @@ class SpectrumCompare():
                                     xlabel="Average Amplitude (unscaled)",
                                     ylabel="Density"
                                     ):
-        amp1 = self.dfs[0].average_amplitude
-        amp2 = self.dfs[1].average_amplitude
+        amp1 = self.dfs[0].scaled_amplitude
+        amp2 = self.dfs[1].scaled_amplitude
 
         samples_1 = []
         samples_2 = []
