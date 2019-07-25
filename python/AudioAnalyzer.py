@@ -11,6 +11,8 @@ import librosa.display
 import numpy as np
 import pandas as pd
 
+from scipy.stats import ttest_ind
+
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as path_effects
 
@@ -94,7 +96,6 @@ class SignalCompare():
     def __init__(self, original, modified):
         """
         Compares the frequency and amplitude information of two AudioAnalyzer class instances. 
-        NOTE: Each Audio analyzer class must have called its .spectrum_analysis method before being passed in to this ckass.
         
         Input:
             original, modified: the two AudioAnalyzer class instances.
@@ -129,7 +130,7 @@ class SignalCompare():
         """
         
         dfs = self.dfs.copy()
-        fig = plt.figure(figsize=(20,8))
+        fig = plt.figure(figsize=(16,4))
         
         if frange:
             for i, df in enumerate(dfs):
@@ -151,14 +152,15 @@ class SignalCompare():
         if threshold and frange:
             plt.plot([frange[0] / 1000, frange[1] / 1000], [0.5, 0.5], linestyle="--", label=legend[3], c="r")
         
-        plt.xlabel(xlabel)
-        plt.ylabel(ylabel) 
+        plt.title(title, fontsize=24)
+        plt.xlabel(xlabel, fontsize=20)
+        plt.ylabel(ylabel, fontsize=20) 
         plt.legend()
         
-    def plot_attenuation_graph(self, 
+    def plot_spectrum_comparison(self, 
                                plot_original=False,
                                frange=[], 
-                               title="Frequency Attenuation", 
+                               title="Audio Comparison", 
                                cmap="plasma",
                                background_color="white",
                                background_alpha=0.5
@@ -216,6 +218,36 @@ class SignalCompare():
         fig.suptitle(title, size=36, y=0.95)
         
     
+    def plot_amplitude_distributions(self, 
+                                    n=10000, 
+                                    size=1000,
+                                    title="Amplitude Distributions",
+                                    xlabel="Average Amplitude",
+                                    ylabel="Density"
+                                    ):
+        amp1 = self.dfs[0].scaled_amplitude
+        amp2 = self.dfs[1].scaled_amplitude
+
+        samples_1 = []
+        samples_2 = []
+
+        for i in range(size):
+            samples_1.append(np.random.choice(amp1, size=size).mean())
+            samples_2.append(np.random.choice(amp2, size=size).mean())
+
+        plt.figure(figsize=(8,6))
+
+        sns.distplot(samples_1)
+        sns.distplot(samples_2)
+
+        plt.title(title, fontsize=18)
+        plt.xlabel(xlabel, fontsize=14)
+        plt.ylabel(ylabel, fontsize=14)
+
+        t_stat, p_val = ttest_ind(samples_1, samples_2, equal_var=False)
+        return pd.DataFrame([[t_stat, p_val]], columns=["T-Statistic", "P-Value"])
+
+
     @staticmethod
     def get_max_average(self):
         max_average = 0
