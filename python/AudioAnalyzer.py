@@ -114,7 +114,7 @@ class SignalCompare():
                             spec_2=True,
                             title="Comparison of Frequency Amplitudes",
                             xlabel="Frequency (kHz)",
-                            ylabel="Normalized Amplitude",                             
+                            ylabel="Scaled Amplitude",                             
                             frange=None,
                             ratio=False,
                             legend=["Spectrum 1", "Spectrum 2", "Signal Diff.", "Threshold"],
