@@ -12,7 +12,7 @@ The code in this project provides a means of comparing two audio files through v
 
 ## Required Packages
 
-In order to implement these classes, you will need to following packages installed in your environment:
+In order to implement these classes, you will need the following packages installed in your environment:
 
 * `numpy` 
 * `pandas`
@@ -21,7 +21,7 @@ In order to implement these classes, you will need to following packages install
 * `scipy`
 * `librosa`
 
-If you are using linux, you may also need to install additional codecs if you want to use MP3 files and not WAV files. 
+Also, if you are using linux, you may also need to install additional codecs if you want to use MP3 files and not WAV files. 
 
 ## License
 
