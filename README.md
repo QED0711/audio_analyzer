@@ -1,6 +1,6 @@
 # Audio Analyzer
 
-The code in this project provides a means of comparing two audio files through visualization to see their similarities and differences. A detailed walkthrough for how to implement the custom classes is provided in the `main.ipynb`. Additionaly, you can find an writeup and sample analysis using these tools at [this medium article](https://medium.com/@qdizon/a-data-scientists-approach-to-visual-audio-comparison-fa15a5d3dcef). 
+The code in this project provides a means of comparing two audio files through visualization to see their similarities and differences. A detailed walkthrough for how to implement the custom classes is provided in the `main.ipynb`. Additionaly, you can find a writeup and sample analysis using these tools at [this medium article](https://medium.com/@qdizon/a-data-scientists-approach-to-visual-audio-comparison-fa15a5d3dcef). 
 
 ## Project Contents
 
