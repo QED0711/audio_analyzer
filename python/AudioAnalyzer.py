@@ -237,8 +237,10 @@ class SpectrumCompare():
 
         plt.figure(figsize=(8,6))
 
-        sns.distplot(samples_1)
-        sns.distplot(samples_2)
+        sns.histplot(samples_1, kde=True, stat="density", kde_kws=dict(cut=3),
+                     alpha=.4, edgecolor=(1, 1, 1, .4))
+        sns.histplot(samples_2, kde=True, stat="density", kde_kws=dict(cut=3),
+                     alpha=.4, edgecolor=(1, 1, 1, .4))
 
         plt.title(title, fontsize=18)
         plt.xlabel(xlabel, fontsize=14)
